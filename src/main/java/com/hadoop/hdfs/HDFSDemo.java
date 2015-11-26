@@ -1,10 +1,6 @@
 package com.hadoop.hdfs;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -24,13 +20,36 @@ public class HDFSDemo {
     private FileSystem fs = null;
 
     @Before
-    public void init() throws URISyntaxException, IOException {
-        fs = FileSystem.get(new URI("hdfs://hadoop00:9000"), new Configuration());
+    public void init() throws URISyntaxException, IOException, InterruptedException {
+        fs = FileSystem.get(new URI("hdfs://itcast01:9000"), new Configuration(), "root");
     }
 
     @Test
-    public void testDownload() {
+    public void testUpload() throws IOException {
+        FSDataOutputStream out = fs.create(new Path("/jdk2.tar.gz"));
+        FileInputStream in = new FileInputStream(new File("jdk.tar.gz"));
 
+        IOUtils.copyBytes(in, out, 4096, true);
+
+    }
+
+    @Test
+    public void testDownload() throws IOException {
+        InputStream in = fs.open(new Path("/jdk.tar.gz"));
+        FileOutputStream out = new FileOutputStream(new File("aaa"));
+        IOUtils.copyBytes(in, out, 4096, true);
+    }
+
+    @Test
+    public void testMkdir() throws IllegalArgumentException, IOException {
+        boolean flag = fs.mkdirs(new Path("/itcast88888888"));
+        System.out.println(flag);
+    }
+
+    @Test
+    public void testDel() throws IllegalArgumentException, IOException {
+        boolean flag = fs.delete(new Path("/itcast88888888"), true);
+        System.out.println(flag);
     }
 
 }
