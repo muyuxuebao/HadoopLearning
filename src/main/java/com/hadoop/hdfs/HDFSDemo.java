@@ -26,8 +26,8 @@ public class HDFSDemo {
 
     @Test
     public void testUpload() throws IOException {
-        FSDataOutputStream out = fs.create(new Path("/jdk2.tar.gz"));
-        FileInputStream in = new FileInputStream(new File("jdk.tar.gz"));
+        FSDataOutputStream out = fs.create(new Path("/HadoopLearning.jar"));
+        FileInputStream in = new FileInputStream(new File("HadoopLearning.jar"));
 
         IOUtils.copyBytes(in, out, 4096, true);
 
