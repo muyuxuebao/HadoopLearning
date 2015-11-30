@@ -36,7 +36,7 @@ public class HDFSDemo {
     @Test
     public void testDownload() throws IOException {
         InputStream in = fs.open(new Path("/jdk.tar.gz"));
-        FileOutputStream out = new FileOutputStream(new File("aaa"));
+        FileOutputStream out = new FileOutputStream(new File("jdk.tar.gz"));
         IOUtils.copyBytes(in, out, 4096, true);
     }
 
