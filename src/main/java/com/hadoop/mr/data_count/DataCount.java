@@ -42,28 +42,38 @@ public class DataCount {
                 up_sum += bean.getUpPayLoad();
                 down_sum += bean.getDownPayLoad();
             }
-            DataBean bean = new DataBean("", up_sum, down_sum);
+            DataBean bean = new DataBean(key.toString(), up_sum, down_sum);
             context.write(key, bean);
         }
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf);
+    public static void main(String[] args) {
+        try {
+            Configuration conf = new Configuration();
+            Job job = Job.getInstance(conf);
 
-        job.setJarByClass(DataCount.class);
+            job.setJarByClass(DataCount.class);
 
-        job.setMapperClass(DCMapper.class);
-        job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(DataBean.class);
-        FileInputFormat.setInputPaths(job, new Path(args[0]));
+            job.setMapperClass(DCMapper.class);
+            job.setMapOutputKeyClass(Text.class);
+            job.setMapOutputValueClass(DataBean.class);
+            FileInputFormat.setInputPaths(job, new Path(args[0]));
 
-        job.setReducerClass(DCReducer.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(DataBean.class);
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+            job.setReducerClass(DCReducer.class);
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(DataBean.class);
+            FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        job.waitForCompletion(true);
+            job.waitForCompletion(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
 
     }
 }

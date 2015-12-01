@@ -20,16 +20,15 @@ public class DataBean implements Writable {
         this.tel = tel;
         this.upPayLoad = upPayLoad;
         this.downPayLoad = downPayLoad;
+        this.totalPayLoad = this.upPayLoad + this.downPayLoad;
     }
 
     @Override
     public String toString() {
-        return "DataBean{" +
-                "tel='" + tel + '\'' +
-                ", upPayLoad=" + upPayLoad +
-                ", downPayLoad=" + downPayLoad +
-                ", totalPayLoad=" + totalPayLoad +
-                '}';
+        return
+                "upPayLoad=" + upPayLoad +
+                        ", downPayLoad=" + downPayLoad +
+                        ", totalPayLoad=" + totalPayLoad;
     }
 
     public void write(DataOutput out) throws IOException {
