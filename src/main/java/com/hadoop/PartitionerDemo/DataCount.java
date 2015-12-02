@@ -50,9 +50,10 @@ public class DataCount {
         }
     }
 
-    private static class DCPartitioner extends Partitioner<Text, DataBean>{
-        private static Map<String,Integer> provider = new HashMap<String,Integer>();
-        static{
+    private static class DCPartitioner extends Partitioner<Text, DataBean> {
+        private static Map<String, Integer> provider = new HashMap<String, Integer>();
+
+        static {
             provider.put("138", 1);
             provider.put("139", 1);
             provider.put("152", 2);
@@ -60,18 +61,18 @@ public class DataCount {
             provider.put("182", 3);
             provider.put("183", 3);
         }
+
         @Override
         public int getPartition(Text text, DataBean dataBean, int numPartitions) {
             //向数据库或配置信息 读写
-            String tel_sub = text.toString().substring(0,3);
+            String tel_sub = text.toString().substring(0, 3);
             Integer count = provider.get(tel_sub);
-            if(count == null){
+            if (count == null) {
                 count = 0;
             }
-            return count;
+            return count; //返回的值决定这个值对应的数据给那个reducer处理，一个reducer对应于一个文件
         }
     }
-
 
 
     public static void main(String[] args) {
@@ -91,7 +92,9 @@ public class DataCount {
             job.setOutputValueClass(DataBean.class);
             FileOutputFormat.setOutputPath(job, new Path(args[1]));  //保存结果的地址
 
-            job.setNumReduceTasks(Integer.parseInt(args[2]));  //启动 reducer 的数量，一个reducer对应于一个文件分区
+            job.setNumReduceTasks(Integer.parseInt(args[2]));  //启动 reducer 的数量，一个reducer对应于一个文件
+
+            job.setPartitionerClass(DCPartitioner.class);
 
             job.waitForCompletion(true);
 
