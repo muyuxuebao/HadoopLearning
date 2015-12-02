@@ -84,14 +84,17 @@ public class DataCount {
             job.setMapperClass(DCMapper.class);
             job.setMapOutputKeyClass(Text.class);
             job.setMapOutputValueClass(DataBean.class);
-            FileInputFormat.setInputPaths(job, new Path(args[0]));
+            FileInputFormat.setInputPaths(job, new Path(args[0]));   //数据文件地址
 
             job.setReducerClass(DCReducer.class);
             job.setOutputKeyClass(Text.class);
             job.setOutputValueClass(DataBean.class);
-            FileOutputFormat.setOutputPath(job, new Path(args[1]));
+            FileOutputFormat.setOutputPath(job, new Path(args[1]));  //保存结果的地址
+
+            job.setNumReduceTasks(Integer.parseInt(args[2]));  //启动 reducer 的数量，一个reducer对应于一个文件分区
 
             job.waitForCompletion(true);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
