@@ -22,6 +22,10 @@ public class WordCount {
         //notice
         job.setJarByClass(WordCount.class);
 
+
+        //set combiner
+        job.setCombinerClass(WCReducer.class);
+
         //set mapper`s property
         job.setMapperClass(WCMapper.class);
         job.setMapOutputKeyClass(Text.class);

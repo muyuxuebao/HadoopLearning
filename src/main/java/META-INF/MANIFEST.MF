@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.hadoop.PartitionerDemo.DataCount
+Main-Class: com.hadoop.Summation_and_sorted.SORT
 
