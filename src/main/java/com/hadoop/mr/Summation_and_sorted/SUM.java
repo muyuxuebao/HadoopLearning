@@ -1,4 +1,4 @@
-package com.hadoop.Summation_and_sorted;
+package com.hadoop.mr.Summation_and_sorted;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
