@@ -16,7 +16,7 @@ import org.junit.Test;
 /**
  * Created by muyux on 2015/11/24.
  */
-public class HDFSDemo {
+public class HDFS_Demo {
     private FileSystem fs = null;
 
     @Before
