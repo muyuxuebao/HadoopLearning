@@ -123,7 +123,7 @@ public class HbaseDemo {
 
     @Test
     public void testScan() throws Exception {
-        HTable table=new HTable(conf,table_name);
+        HTable table = new HTable(conf, table_name);
 
         Scan scan = new Scan(Bytes.toBytes("rk0"), Bytes.toBytes("rk3"));  //注意，排序是按照字典顺序完成的，类似于两个字符串比较大小
         scan.addFamily(Bytes.toBytes("info"));
@@ -132,7 +132,7 @@ public class HbaseDemo {
             byte[] value = r.getValue(Bytes.toBytes("info"), Bytes.toBytes("name"));
             System.out.println(new String(value));
         }
-       // pool.close();
+        // pool.close();
     }
 
 
