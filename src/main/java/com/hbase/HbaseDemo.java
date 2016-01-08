@@ -132,7 +132,8 @@ public class HbaseDemo {
             byte[] value = r.getValue(Bytes.toBytes("info"), Bytes.toBytes("name"));
             System.out.println(new String(value));
         }
-        // pool.close();
+
+        table.close();
     }
 
 
