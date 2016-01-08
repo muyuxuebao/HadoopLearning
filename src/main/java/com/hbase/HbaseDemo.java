@@ -36,7 +36,7 @@ public class HbaseDemo {
     }
 
     @Test
-    public void create() throws Exception {
+    public void testCreate() throws Exception {
         HBaseAdmin admin = new HBaseAdmin(conf);
         HTableDescriptor htd = new HTableDescriptor(TableName.valueOf(table_name));
 
@@ -76,7 +76,7 @@ public class HbaseDemo {
 
     @Test
     public void testManyPut() throws Exception {
-        int maxItem = 100;
+        int maxItem = 1000;
 
 
         HTable table = new HTable(conf, table_name);
@@ -84,7 +84,7 @@ public class HbaseDemo {
         List<Put> puts = new ArrayList<Put>(maxItem / 10);
 
         for (int i = 2; i <= maxItem; i++) {
-            Put put = new Put(Bytes.toBytes("kr" + i));
+            Put put = new Put(Bytes.toBytes("rk" + i));
             put.add(Bytes.toBytes("info"), Bytes.toBytes("name"), Bytes.toBytes("zhangsan" + i));
             put.add(Bytes.toBytes("info"), Bytes.toBytes("money"), Bytes.toBytes("" + i * 100));
             put.add(Bytes.toBytes("info"), Bytes.toBytes("gender"), i % 2 == 0 ? Bytes.toBytes("female") : Bytes.toBytes("male"));
@@ -123,25 +123,16 @@ public class HbaseDemo {
 
     @Test
     public void testScan() throws Exception {
-        HTablePool pool = new HTablePool(conf, 10);
-        HTableInterface table = pool.getTable(table_name);
-        Scan scan = new Scan(Bytes.toBytes("rk0001"), Bytes.toBytes("rk0002"));
+        HTable table=new HTable(conf,table_name);
+
+        Scan scan = new Scan(Bytes.toBytes("rk0"), Bytes.toBytes("rk3"));  //注意，排序是按照字典顺序完成的，类似于两个字符串比较大小
         scan.addFamily(Bytes.toBytes("info"));
         ResultScanner scanner = table.getScanner(scan);
         for (Result r : scanner) {
-            /**
-             for(KeyValue kv : r.list()){
-             String family = new String(kv.getFamily());
-             System.out.println(family);
-             String qualifier = new String(kv.getQualifier());
-             System.out.println(qualifier);
-             System.out.println(new String(kv.getValue()));
-             }
-             */
             byte[] value = r.getValue(Bytes.toBytes("info"), Bytes.toBytes("name"));
             System.out.println(new String(value));
         }
-        pool.close();
+       // pool.close();
     }
 
 
