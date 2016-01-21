@@ -150,6 +150,7 @@ class LogParser {
 		}
 		return "";
 	}
+
 	private String parseIP(String line) {
 		String ip = line.split("- -")[0].trim();
 		return ip;
