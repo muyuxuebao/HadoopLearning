@@ -155,6 +155,5 @@
     <orderEntry type="library" name="Maven: org.apache.calcite:calcite-avatica:1.2.0-incubating" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: jline:jline:2.12" level="project" />
-    <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
   </component>
 </module>
