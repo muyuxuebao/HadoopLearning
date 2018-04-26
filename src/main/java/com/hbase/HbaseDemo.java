@@ -28,7 +28,7 @@ public class HbaseDemo {
     @Before
     public void init() {
         conf = HBaseConfiguration.create();
-        conf.set("hbase.zookeeper.quorum", "itcast04:2181,itcast05:2181,itcast06:2181");
+        conf.set("hbase.zookeeper.quorum", "liang");
 
         table_name = "people";
     }
