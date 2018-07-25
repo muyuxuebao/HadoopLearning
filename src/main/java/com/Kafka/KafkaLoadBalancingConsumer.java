@@ -13,6 +13,7 @@ import kafka.javaapi.consumer.ConsumerConnector;
 
 
 public class KafkaLoadBalancingConsumer extends Thread {
+    // 没有看出怎么负载均衡了，后面有机会再研究研究
     private final ConsumerConnector consumer;
     private final String topic;
 
