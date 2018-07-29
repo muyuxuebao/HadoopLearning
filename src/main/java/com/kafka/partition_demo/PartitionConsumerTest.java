@@ -3,6 +3,7 @@ package com.kafka.partition_demo;
 /**
  * Created by muyux on 2018/7/29.
  */
+
 import kafka.api.FetchRequest;
 import kafka.api.FetchRequestBuilder;
 import kafka.api.PartitionOffsetRequestInfo;
@@ -24,21 +25,21 @@ public class PartitionConsumerTest {
         PartitionConsumerTest example = new PartitionConsumerTest();
         long maxReads = Long.MAX_VALUE;
         String topic = "jiketest";
-        if(args.length < 1){
+        if (args.length < 1) {
             System.out.println("Please assign partition number.");
         }
 
         List<String> seeds = new ArrayList<String>();
-        String hosts="10.206.216.13,10.206.212.14,10.206.209.25";
+        String hosts = "10.206.216.13,10.206.212.14,10.206.209.25";
         String[] hostArr = hosts.split(",");
-        for(int index = 0;index < hostArr.length;index++){
+        for (int index = 0; index < hostArr.length; index++) {
             seeds.add(hostArr[index].trim());
         }
 
         int port = 19092;
 
         int partLen = Integer.parseInt(args[0]);
-        for(int index=0;index < partLen;index++){
+        for (int index = 0; index < partLen; index++) {
             try {
                 example.run(maxReads, topic, index/*partition*/, seeds, port);
             } catch (Exception e) {
@@ -70,7 +71,7 @@ public class PartitionConsumerTest {
         String clientName = "Client_" + a_topic + "_" + a_partition;
 
         SimpleConsumer consumer = new SimpleConsumer(leadBroker, a_port, 100000, 64 * 1024, clientName);
-        long readOffset = getLastOffset(consumer,a_topic, a_partition, kafka.api.OffsetRequest.EarliestTime(), clientName);
+        long readOffset = getLastOffset(consumer, a_topic, a_partition, kafka.api.OffsetRequest.EarliestTime(), clientName);
 
         int numErrors = 0;
         while (a_maxReads > 0) {
@@ -89,9 +90,9 @@ public class PartitionConsumerTest {
                 short code = fetchResponse.errorCode(a_topic, a_partition);
                 System.out.println("Error fetching data from the Broker:" + leadBroker + " Reason: " + code);
                 if (numErrors > 5) break;
-                if (code == ErrorMapping.OffsetOutOfRangeCode())  {
+                if (code == ErrorMapping.OffsetOutOfRangeCode()) {
                     // We asked for an invalid offset. For simple case ask for the last element to reset
-                    readOffset = getLastOffset(consumer,a_topic, a_partition, kafka.api.OffsetRequest.LatestTime(), clientName);
+                    readOffset = getLastOffset(consumer, a_topic, a_partition, kafka.api.OffsetRequest.LatestTime(), clientName);
                     continue;
                 }
                 consumer.close();
@@ -138,7 +139,7 @@ public class PartitionConsumerTest {
         OffsetResponse response = consumer.getOffsetsBefore(request);
 
         if (response.hasError()) {
-            System.out.println("Error fetching data Offset Data the Broker. Reason: " + response.errorCode(topic, partition) );
+            System.out.println("Error fetching data Offset Data the Broker. Reason: " + response.errorCode(topic, partition));
             return 0;
         }
         long[] offsets = response.offsets(topic, partition);

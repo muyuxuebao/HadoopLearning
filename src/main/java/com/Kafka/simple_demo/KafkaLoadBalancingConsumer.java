@@ -1,4 +1,4 @@
-package com.Kafka.simple_demo;
+package com.kafka.simple_demo;
 
 
 import java.util.HashMap;
