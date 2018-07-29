@@ -1,4 +1,4 @@
-package com.Kafka;
+package com.Kafka.simple_demo;
 
 /**
  * Created by yinliang on 2018/7/25.

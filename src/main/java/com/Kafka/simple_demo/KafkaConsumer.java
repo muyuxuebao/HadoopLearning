@@ -1,5 +1,8 @@
-package com.Kafka;
+package com.Kafka.simple_demo;
 
+/**
+ * Created by yinliang on 2018/7/25.
+ */
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,13 +14,11 @@ import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 
-
-public class KafkaLoadBalancingConsumer extends Thread {
-    // 没有看出怎么负载均衡了，后面有机会再研究研究
+public class KafkaConsumer extends Thread {
     private final ConsumerConnector consumer;
     private final String topic;
 
-    public KafkaLoadBalancingConsumer(String topic) {
+    public KafkaConsumer(String topic) {
         consumer = kafka.consumer.Consumer.createJavaConsumerConnector(
                 createConsumerConfig());
         this.topic = topic;
