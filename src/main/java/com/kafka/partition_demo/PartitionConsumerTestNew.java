@@ -25,9 +25,9 @@ public class PartitionConsumerTestNew {
         String topic = "test";
 
         List<InetSocketAddress> server_address = new ArrayList<InetSocketAddress>();
-        server_address.add(new InetSocketAddress("192.168.83.128", 9091));
-        server_address.add(new InetSocketAddress("192.168.83.128", 9092));
-        server_address.add(new InetSocketAddress("192.168.83.128", 9093));
+        server_address.add(new InetSocketAddress("192.168.104.75", 9093));
+        server_address.add(new InetSocketAddress("192.168.104.75", 9094));
+        server_address.add(new InetSocketAddress("192.168.104.75", 9095));
 
         int partLen = 3;
         for (int index = 0; index < partLen; index++) {
@@ -58,7 +58,7 @@ public class PartitionConsumerTestNew {
         String leadBroker = metadata.leader().host();
         String clientName = "Client_" + topic + "_" + partition_index;
 
-        SimpleConsumer consumer = new SimpleConsumer( metadata.leader().host(),  metadata.leader().port(), 100000, 64 * 1024, clientName);
+        SimpleConsumer consumer = new SimpleConsumer(metadata.leader().host(), metadata.leader().port(), 100000, 64 * 1024, clientName);
     }
 
     private PartitionMetadata findLeader(List<InetSocketAddress> server_address, String topic, int partition_index) {
