@@ -30,22 +30,20 @@ public class PartitionConsumerTest {
         }
 
         List<String> seeds = new ArrayList<String>();
-        String hosts = "10.206.216.13,10.206.212.14,10.206.209.25";
+        String hosts = "192.168.104.75";
         String[] hostArr = hosts.split(",");
         for (int index = 0; index < hostArr.length; index++) {
             seeds.add(hostArr[index].trim());
         }
 
-        int port = 19092;
+        int port = 9093;
 
-        int partLen = Integer.parseInt(args[0]);
-        for (int index = 0; index < partLen; index++) {
-            try {
-                example.run(maxReads, topic, index/*partition*/, seeds, port);
-            } catch (Exception e) {
-                System.out.println("Oops:" + e);
-                e.printStackTrace();
-            }
+        int partLen = 1;
+        try {
+            example.run(maxReads, topic, 0/*partition*/, seeds, port);
+        } catch (Exception e) {
+            System.out.println("Oops:" + e);
+            e.printStackTrace();
         }
     }
 
