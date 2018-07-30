@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HadoopLearning.iml" filepath="$PROJECT_DIR$/HadoopLearning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/big_data_learning.iml" filepath="$PROJECT_DIR$/big_data_learning.iml" />
     </modules>
   </component>
 </project>
