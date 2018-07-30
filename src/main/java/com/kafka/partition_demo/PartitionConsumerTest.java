@@ -80,7 +80,7 @@ public class PartitionConsumerTest {
             }
             FetchRequest req = new FetchRequestBuilder()
                     .clientId(clientName)
-                    .addFetch(a_topic, a_partition, readOffset, 100000) // Note: this fetchSize of 100000 might need to be increased if large batches are written to Kafka
+                    .addFetch(a_topic, a_partition, readOffset, 100000) // Note: this fetchSize of 100000 might need to be increased if large batches are written to kafka
                     .build();
             FetchResponse fetchResponse = consumer.fetch(req);
 
