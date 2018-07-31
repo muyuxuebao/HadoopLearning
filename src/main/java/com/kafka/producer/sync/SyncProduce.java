@@ -16,10 +16,10 @@ public class SyncProduce {
         Random rnd = new Random();
 
         Properties props = new Properties();
-        props.put("metadata.broker.list", "10.206.216.13:19092,10.206.212.14:19092,10.206.209.25:19092");
+        props.put("metadata.broker.list", "192.168.104.75:9093,192.168.104.75:9094,192.168.104.75:9095");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
-        //kafka.serializer.DefaultEncoder
-        props.put("partitioner.class", "kafka.producer.partiton.SimplePartitioner");
+//        //kafka.serializer.DefaultEncoder
+//        props.put("partitioner.class", "kafka.producer.partiton.SimplePartitioner");
         //kafka.producer.DefaultPartitioner: based on the hash of the key
         props.put("request.required.acks", "1");
         //0;  绝不等确认  1:   leader的一个副本收到这条消息，并发回确认 -1：   leader的所有副本都收到这条消息，并发回确认
