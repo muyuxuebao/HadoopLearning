@@ -1,4 +1,4 @@
-package com.kafka.partition_demo;
+package com.kafka.consumer.partition_demo;
 
 /**
  * Created by muyux on 2018/7/29.

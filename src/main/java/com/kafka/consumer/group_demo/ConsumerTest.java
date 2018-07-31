@@ -1,4 +1,4 @@
-package com.kafka.group_demo;
+package com.kafka.consumer.group_demo;
 
 /**
  * Created by muyux on 2018/7/29.
