@@ -17,10 +17,10 @@ public class ASyncProduce {
         Random rnd = new Random();
 
         Properties props = new Properties();
-        props.put("metadata.broker.list", "10.206.216.13:19092,10.206.212.14:19092,10.206.209.25:19092");
+        props.put("metadata.broker.list", "192.168.104.75:9093,192.168.104.75:9094,192.168.104.75:9095");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
         //kafka.serializer.DefaultEncoder
-        props.put("partitioner.class", "kafka.producer.partiton.SimplePartitioner");
+//        props.put("partitioner.class", "kafka.producer.partiton.SimplePartitioner");
         //kafka.producer.DefaultPartitioner: based on the hash of the key
         //props.put("request.required.acks", "1");
         props.put("producer.type", "async");
