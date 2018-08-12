@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.hadoop.mr.inverted_index.Inverted_index
+Main-Class: com.yinliang.hadoop.mr.inverted_index.Inverted_index
 
