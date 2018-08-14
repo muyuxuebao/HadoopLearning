@@ -27,7 +27,7 @@ public class KafkaAvroDataProducter {
         Injection<GenericRecord, byte[]> recordInjection = GenericAvroCodecs.toBinary(schema);
 
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9999999; i++) {
             GenericData.Record userRecord = new GenericData.Record(schema);
             userRecord.put("name", "Str 1-" + i);
             userRecord.put("age", 20 + i);

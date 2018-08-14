@@ -51,16 +51,20 @@ public class KafkaAvroDataConsumer {
             ConsumerIterator it = stream.iterator();
             while (it.hasNext()) {
                 MessageAndMetadata messageAndMetadata = it.next();
-                String key = new String((byte[]) messageAndMetadata.key());
+
                 byte[] message = (byte[]) messageAndMetadata.message();
+//                for (byte b : message) {
+//                    System.out.println(b);
+//                }
+//                String key = new String((byte[]) messageAndMetadata.key());
 
                 InputStream inputStream = ClassLoader.getSystemResourceAsStream("avro/user.avsc");
                 Schema schema = new Schema.Parser().parse(inputStream);
                 Injection<GenericRecord, byte[]> recordInjection = GenericAvroCodecs.toBinary(schema);
                 GenericRecord record = recordInjection.invert(message).get();
-                System.out.println("key=" + key + ", str1= " + record.get("str1")
-                        + ", str2= " + record.get("str2")
-                        + ", int1=" + record.get("int1"));
+//                System.out.println("key=" + key + ", str1= " + record.get("str1")
+//                        + ", str2= " + record.get("str2")
+//                        + ", int1=" + record.get("int1"));
             }
         }
         consumer.shutdown();
