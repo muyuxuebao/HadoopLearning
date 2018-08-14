@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AvroDemo {
+public class AvroSimpleDemo {
     public static void main(String[] args) throws IOException {
         InputStream inputStream = ClassLoader.getSystemResourceAsStream("avro/user.avsc");
         Schema schema = new Schema.Parser().parse(inputStream);
