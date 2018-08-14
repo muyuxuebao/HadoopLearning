@@ -26,23 +26,27 @@ import java.util.Properties;
  */
 public class KafkaAvroDataConsumer {
     private static final String TOPIC = "TOPIC_AVRE";
+    private final ConsumerConnector consumer;
+    private final String topic;
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public KafkaAvroDataConsumer(String zookeeper, String groupId, String topic) {
         Properties props = new Properties();
-        props.put("zookeeper.connect", "192.168.104.75:2182");
-        props.put("group.id", "group1");
+        props.put("zookeeper.connect", zookeeper);
+        props.put("group.id", groupId);
         props.put("zookeeper.session.timeout.ms", "500");
         props.put("zookeeper.sync.time.ms", "250");
         props.put("auto.commit.interval.ms", "1000");
 
-        ConsumerConnector consumer = Consumer.createJavaConsumerConnector(new ConsumerConfig(props));
+        consumer = Consumer.createJavaConsumerConnector(new ConsumerConfig(props));
+        this.topic = topic;
+    }
 
-
+    public void testConsumer() throws IOException {
         Map<String, Integer> topicCount = new HashMap<String, Integer>();
-        topicCount.put(TOPIC, 1);
+        topicCount.put(topic, 1);
 
         Map<String, List<KafkaStream<byte[], byte[]>>> consumerStreams = consumer.createMessageStreams(topicCount);
-        List<KafkaStream<byte[], byte[]>> streams = consumerStreams.get(TOPIC);
+        List<KafkaStream<byte[], byte[]>> streams = consumerStreams.get(topic);
         for (final KafkaStream stream : streams) {
             ConsumerIterator it = stream.iterator();
             while (it.hasNext()) {
@@ -62,4 +66,9 @@ public class KafkaAvroDataConsumer {
         consumer.shutdown();
     }
 
+    public static void main(String[] args) throws IOException {
+        KafkaAvroDataConsumer simpleConsumer =
+                new KafkaAvroDataConsumer("192.168.104.75:2182", "testgroup", TOPIC);
+        simpleConsumer.testConsumer();
+    }
 }
