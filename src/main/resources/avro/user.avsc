@@ -1,4 +1,4 @@
-{"namespace": "com.test.avro",
+{"namespace": "com.yinliang.avro",
  "type": "record",
  "name": "User",
  "fields": [

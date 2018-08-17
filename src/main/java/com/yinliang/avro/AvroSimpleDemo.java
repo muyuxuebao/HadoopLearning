@@ -39,10 +39,10 @@ public class AvroSimpleDemo {
         dataFileWriter.append(user);
         dataFileWriter.close();
 
-//反序列化
+        //反序列化
         DatumReader<User> userDatumReader = new SpecificDatumReader<User>(User.class);
-// 也可以使用DataFileStream
-// DataFileStream<User> dataFileStream = new DataFileStream<User>(new FileInputStream(diskFile),userDatumReader);
+        // 也可以使用DataFileStream
+        // DataFileStream<User> dataFileStream = new DataFileStream<User>(new FileInputStream(diskFile),userDatumReader);
         DataFileReader<User> dataFileReader = new DataFileReader<User>(diskFile, userDatumReader);
         User _current = null;
         while (dataFileReader.hasNext()) {
