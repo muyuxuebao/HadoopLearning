@@ -11,8 +11,13 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-public class BoolQuerySearchBrand {
-	
+public class Demo_07_BoolQuerySearchBrand {
+
+	/**
+	 * 多种条件的组合搜索
+	 * @param args
+	 * @throws Exception
+	 */
 	@SuppressWarnings({ "resource", "unchecked" })
 	public static void main(String[] args) throws Exception {
 		Settings settings = Settings.builder()

@@ -14,7 +14,38 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-public class BulkUploadSalesDataApp {
+public class Demo_03_BulkUploadSalesDataApp {
+	/**
+	 * 基于bulk的API
+	 * 业务场景：有一个汽车销售公司，拥有很多家4S店，这些4S店的数据，都会在一段时间内陆续传递过来，汽车的销售数据，
+	 * 现在希望能够在内存中缓存比如1000条销售数据，然后一次性批量上传到es中去
+	 * @param args
+	 * @throws Exception
+	 */
+
+	/*
+	数据
+	PUT /car_shop/sales/1
+	{
+		"brand": "宝马",
+		"name": "宝马320",
+		"price": 320000,
+		"produce_date": "2017-01-01",
+		"sale_price": 300000,
+		"sale_date": "2017-01-21"
+	}
+
+	PUT /car_shop/sales/2
+	{
+		"brand": "宝马",
+		"name": "宝马320",
+		"price": 320000,
+		"produce_date": "2017-01-01",
+		"sale_price": 300000,
+		"sale_date": "2017-01-21"
+	}
+
+	 */
 	
 	@SuppressWarnings({ "resource", "unchecked" })
 	public static void main(String[] args) throws Exception {
